@@ -1,0 +1,2 @@
+# chiptheme
+Chip Theme Magento
