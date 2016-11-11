@@ -1,0 +1,215 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<?php 
+$css_font1 = Mage::getStoreConfig('chip/general/googlefonts');
+$css_font2 = Mage::getStoreConfig('chip/general/googlefonts2');
+$css_color1 = Mage::getStoreConfig('chip/general/color1');
+$css_color2 = Mage::getStoreConfig('chip/general/color2');
+$css_color3 = Mage::getStoreConfig('chip/general/color3');
+$css_color4 = Mage::getStoreConfig('chip/header/color4');
+?>
+<?php if ($css_font1 != 'Default'): ?>
+    <link href='http://fonts.googleapis.com/css?family=<?php echo $css_font1;?>:100,200,300,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body
+        { 
+            font-family: <?php echo Mage::getStoreConfig('chip/general/googlefonts');?>,Arial, Helvetica, sans-serif;
+        }
+    </style>
+<?php endif;?>
+    
+<?php if ($css_font2 != 'Default'): ?>
+    <link href='http://fonts.googleapis.com/css?family=<?php echo $css_font2;?>:100,200,300,400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .tp-simpleresponsive .homepagename,
+        .categories-homepage .category-item .category-name,
+        .heading-title,
+        .product-name a,
+        .ajaxnavigation-loading-wrapper,
+        .systemfont,
+        .block-title,
+        footer .heading-company,
+        .website-header .header-bottom span,
+        .product-shop .product-name,
+        .category-title,
+        .website-header .header-bottom .wishlist .view-wishlist,
+        .website-header .header-bottom .cart .view-cart span,
+        .block-layered-nav .no-filters,
+        .cart .discount-form .button,
+        .cart .shipping-form .button,
+        .block-layered-nav .block-options-heading,
+        .promo-banner .promo-text,
+        .view-more-link,
+        .box-up-sell header h2,
+        .no-products,
+        .promo-divider span
+        {
+            font-family: <?php echo Mage::getStoreConfig('chip/general/googlefonts2');?>;
+        }
+    </style>
+<?php endif;?>
+
+<style type="text/css">
+
+    /*
+    * FIRST COLOR
+    */
+
+    .search-container button.button span,
+    .header-access .cart .dropdown-content .actions,
+    .menu-button,
+    .price-box,
+    .product-shop button.button,
+    #toTop,
+    .products-grid .bigimage .namebox,
+    .category-products .actions button.btn-cart span.btn-cart-icon,
+    .account-login .page-title .page-icon, 
+    .account-create .page-title .page-icon,
+    .cart-table .btn-update span span i,
+    .products-grid .product-item-detailed .link-wishlist-icon,
+    .products-grid .product-item-detailed .link-compare-icon,
+    .product-view .product-sidebar .product-info-shipping,
+    .product-view .product-sidebar .product-info-rewards,
+    .promo-banner .promo-icon-one,
+    .promo-banner .promo-icon-two,
+    .promo-banner .promo-icon-three,
+    .ajaxcart-checkout-link,
+    .ajaxcart-continue-link,
+    .big-shopping-cart,
+    .website-header .header-bottom .cart .dropdown-content .subtotal,
+    button.btn-email,
+    footer .googlemap-container .company-informaion,
+    .product-shop button.button span
+    {
+        background-color: <?php echo $css_color1; ?>; 
+    }
+    footer .googlemap-container .triangle-wrapper .triangle,
+    .data-table thead,
+    .opc .active .step-title,
+    .ajaxcart-result,
+    .ajaxcart-loading,
+    .products-list-loader-main,
+    .logo-container
+    {
+        border-color: <?php echo $css_color1; ?>; 
+    }
+    .product-shop .price-box,
+    .cart-table .btn-continue span span i,
+    .divider-diamond,
+    .form-list label.required em,
+    .mini-products-list .product-sku span,
+    .mini-products-list .product-qty span,
+    .website-header .form-currency .current,
+    .website-header .form-language .current,
+    .nav-container #nav li a:hover,
+    .nav-container #nav li.over a,
+    .nav-container #nav li.active a,
+    .nav-container #nav ul li a:hover,
+    .nav-container #nav ul li.over > a,
+    .nav-container #nav ul li.over > a,    
+    .nav-container #menu a:hover,
+    .website-header .header-bottom .cart .view-cart i,
+    .special-price
+    {
+        color: <?php echo $css_color1; ?>; 
+    }
+
+
+
+    /*
+    * SECOND COLOR
+    */
+    .product-extra-information .product-info-item,
+    .add-to-cart .qty-container,
+     button.button span,
+    .navigation-buttons button.scroll-left span,
+     .website-header .header-bottom .wishlist .wishlist-content .actions
+    {
+        background-color: <?php echo $css_color2; ?>; 
+    }
+
+    .view-more-link
+    {
+        color: <?php echo $css_color2; ?>; 
+    }
+
+
+    /*
+    * THIRD COLOR
+    */
+    .header-access .cart .dropdown-content .subtotal,
+    .add-to-cart input.qty,
+    #tabs .tabs-heading,
+    .promo-new,
+    .promo-sale,
+    .buttons-set button.button span
+    {
+        background-color: <?php echo $css_color3; ?>;
+    }
+
+    #tabs {
+        border-color: <?php echo $css_color3; ?>;
+    }
+
+    .product-view .product-img-box .navigation-buttons i
+    {
+        color: <?php echo $css_color3; ?>;
+    }
+
+    /*
+    * FOURTH COLOR
+    */
+    .header-access
+    {
+        background-color: <?php echo $css_color4; ?>;
+    }
+
+</style>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+    (function(d){
+        var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+        p.type = 'text/javascript';
+        p.async = true;
+        p.src = '//assets.pinterest.com/js/pinit.js';
+        f.parentNode.insertBefore(p, f);
+    }(document));
+</script>

@@ -1,0 +1,43 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php if($this->canShowBlock()): ?>
+    <section class="filters-bg-lines width-mobile">
+        <div class="category-filters">
+
+            <div id="filter-json-temp" style="display:none;"> </div>
+            <div class="block block-layered-nav">
+                <div class="block-title">
+                    <span><?php echo $this->__('Shop By') ?></span>
+                </div>
+                <div class="block-content">
+                    <div class="width-mobile">
+                        <?php echo $this->getStateHtml(); ?>
+                        <div class="filter-list">
+                            <?php if($this->canShowOptions()): ?>
+                                <dl id="narrow-by-list">
+                                    <?php $_filters = $this->getFilters() ?>
+                                    <?php foreach ($_filters as $_filter): ?>
+                                        <?php if($_filter->getItemsCount()): ?>
+                                            <div class="filter-section">
+                                                <dt class="block-options-heading" ><?php echo $this->__($_filter->getName()) ?></dt>
+                                                <dd><?php echo $_filter->getHtml() ?></dd>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </dl>
+                                <script type="text/javascript">decorateDataList('narrow-by-list')</script>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

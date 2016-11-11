@@ -1,0 +1,59 @@
+<?php
+/**
+ *
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+<?php if ($this->getCollection()->getSize()): ?>
+        <div class="toolbar-wrapper">
+            <div class="toolbar">
+                    <?php if ($this->isEnabledViewSwitcher()): ?>
+                        <div class="view-mode">
+                            <?php $_modes = $this->getModes(); ?>
+                            <?php if ($_modes && count($_modes) > 1): ?>
+                                <?php foreach ($this->getModes() as $_code => $_label): ?>
+                                    <?php if ($this->isModeActive($_code)): ?>
+                                        <strong title="<?php echo $_label ?>"
+                                                class="<?php echo strtolower($_code); ?>">
+                                            <?php if ($_code=='list'): ?>
+                                                <i class="icon-th-list"></i>
+                                            <?php endif; ?>
+                                            <?php if ($_code=='grid'): ?>
+                                                <i class="icon-th-large"></i>
+                                            <?php endif; ?>
+                                        </strong>&nbsp;
+                                    <?php else: ?>
+                                        <a href="<?php echo $this->getModeUrl($_code) ?>" title="<?php echo $_label ?>"
+                                           class="<?php echo strtolower($_code); ?>">
+                                            <?php if ($_code=='list'): ?>
+                                                <i class="icon-th-list"></i>
+                                            <?php endif; ?>
+                                            <?php if ($_code=='grid'): ?>
+                                                <i class="icon-th-large"></i>
+                                            <?php endif; ?>
+                                       </a>&nbsp;
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+
+
+                    <div class="pager ">
+                        <?php echo $this->getPagerHtml() ?>
+                    </div>
+
+
+            </div>
+        </div>
+<?php endif ?>

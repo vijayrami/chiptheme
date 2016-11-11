@@ -1,0 +1,89 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php $collection = $this->getReviews(); ?>
+<?php if(count($collection)): ?>
+<section class="widget-reviews">
+    <div class="section-heading">
+        <div class="grid_1 alpha ">
+            &nbsp;
+        </div>
+        <div class="grid_14 alpha">
+            <h2><?php echo $this->__('Best Reviews') ?></h2>
+            <div class="section-divider"></div>
+            <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($this->getStaticBlock())->toHtml(); ?></div>
+            <div class="navigation-buttons">
+                <?php if (count($collection) >8): ?>
+                    <span class="button scroll-left"><i class="icon-angle-left"></i> <?php echo $this->__('previous') ?></span>
+                <?php endif; ?>
+                <?php if (count($collection) >8): ?>
+                    <span class="button scroll-right"><?php echo $this->__('next') ?> <i class="icon-angle-right"></i></span>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="grid_1">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="grid_1 alpha ">
+        &nbsp;
+    </div>
+    <div class="grid_14 alpha">
+        <div class="widget-reviews">
+            <div class="block-content iosSlider-reviews">
+                <ul class="review-slider-items">
+                    <?php foreach ($collection as $_item): ?>
+                        <li class="item">
+                            <div class="review-item">
+                                <div class="review-top">
+                                </div>
+                                <div class="review-content">
+                                    <a class="product-image"
+                                       href="<?php echo $_item->getProductUrl() ?>"
+                                       title="<?php echo $this->htmlEscape($_item->getName()) ?>">
+                                        <img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50,61); ?>"
+                                             alt="<?php echo $this->htmlEscape($_item->getName()) ?>" />
+                                    </a>
+                                    <p class="author-name"> <?php echo $_item->getNickname() ?> </a></p>
+                                    <p class="product-name"> <a href="<?php echo $_item->getProductUrl() ?>"
+                                            title="<?php echo $this->htmlEscape($_item->getName()) ?>">
+                                           <?php echo $this->htmlEscape($_item->getName()) ?>
+                                        </a>
+                                    </p>
+
+                                    <div class="rating-box">
+                                        <div style="width: <?php echo $_item->getRatingSummary()->getData('rating_summary'); ?>%;" class="rating"></div>
+                                    </div>
+
+                                    <div class="review-short">
+                                        <?php
+                                            $_text = $_item->getDescription();
+                                            if (strlen($_text) > 130 ) {
+                                                $_text = substr($_item->getDescription(),0,130) . ' ...';
+                                            }
+                                            echo $_text
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="review-bottom">
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="grid_1 alpha">
+        &nbsp;
+    </div>
+</section>
+<?php endif ?>
+

@@ -1,0 +1,92 @@
+
+/* Toolbar ================================================================================ */
+.toolbar {
+    color: #fff;
+    clear: both;
+    padding: 5px 0;
+    line-height: 2em;
+    float: right;
+    width: 100%;
+}
+
+.toolbar-wrapper {
+    padding: 10px;
+    height: 35px;
+    float: right;
+    width: 100%;
+}
+
+/* Pager */
+.toolbar .pager {
+    float: right;
+    text-align: center;
+    color: #a5a3a3;
+}
+.toolbar .pager .limiter { float:right; }
+.toolbar .pager .pages ol {
+}
+.toolbar .pager .pages li {
+    display: inline;
+    margin-left: 8px;
+    line-height: 30px;
+    color: #444;
+}
+.toolbar .pager .pages .current {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.toolbar .sorter .limiter { float:right; }
+.toolbar .sorter .view-mode { float:left; }
+.toolbar .sorter .sort-by { float:right; }
+.toolbar .sorter .link-feed {}
+
+/* View mode */
+.toolbar .view-mode {
+    float: right;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.toolbar .pager .pages li a {
+    color: #444;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.toolbar .view-mode .list, .toolbar .view-mode .grid {
+    float: left;
+    font-size: 14px;
+    color: #444;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    margin-left: 8px;
+    border: 2px solid #444;
+    height: 14px;
+    width: 14px;
+    padding: 1px 2px;
+    line-height: 15px;
+}
+.toolbar-wrapper .toolbar .view-mode .grid {
+    width: 13px;
+}
+.toolbar .view-mode a.list,
+.toolbar .view-mode a.grid{
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+.toolbar .view-mode .list {
+    margin-left: 10px;
+}
+
+/* Pager ================================================================================ */
+
+.i-pager:hover {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.i-pager {
+    color: #444;
+    font-size: 22px;
+    vertical-align: middle !important;
+}

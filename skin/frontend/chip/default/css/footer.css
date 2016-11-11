@@ -1,0 +1,128 @@
+/* Footer ================================================================================ */
+footer {
+}
+footer .footer-block {padding:28px;}
+footer .footer-block p { color: #999999;}
+
+footer .footer-top .footer-container {
+}
+
+footer .googlemap-container {
+    position: relative;
+    color: #fff;
+}
+footer .googlemap-container .text-wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+footer .googlemap-container p{
+    color: #fff;
+}
+footer .googlemap-container .company-informaion {
+    position: absolute;
+    width: 700px;
+    height: 270px;
+    top: 90px;
+    z-index: 9;
+    left: 50%;
+    margin-left: -350px;
+}
+
+footer .googlemap-container .heading-company {
+    color: #fff;
+    margin-top: 60px;
+    font-size: 33px;
+    text-align: center;
+}
+
+footer .googlemap-container .heading-company .span-heading-icon {
+    position: relative;
+    padding-left: 82px;
+}
+
+footer .googlemap-container .heading-company .heading-icon {
+    height: 87px;
+    width: 50px;
+    background: url(../images/footer-map-icon.png) 0 0 no-repeat;
+    padding-left: 80px;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: -25px;
+}
+
+footer .googlemap-container .info-one {
+    width: 50%;
+    float: left;
+    margin-top: 60px;
+    border-right: 1px solid #fff;
+    padding-top: 20px;
+    font-size: 12px;
+    line-height: 1.6em;
+    font-weight: normal;
+    text-align: right;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    padding-bottom: 20px;
+}
+
+footer .googlemap-container .info-two {
+    width: 49%;
+    float: right;
+    margin-top: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.6em;
+    font-weight: normal;
+    text-align: left;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+footer .googlemap-container .triangle-wrapper {
+    position: absolute;
+    bottom: -51px;
+    left: 43%;
+}
+footer .googlemap-container .triangle-wrapper .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent !important;
+    border-right: 50px solid transparent !important;
+    border-top: 100px solid;
+    position:relative;
+}
+
+footer .footer-container {
+    clear: both;
+}
+
+footer .footer-container .logo-container{
+    margin-top: 30px;
+    width: auto;
+    float: left;
+    padding-right: 0px;
+}
+
+footer .footer-bottom .logo {
+    float: left;
+    padding-right: 10px;
+}
+
+footer .footer-bottom .wideimage{
+    padding-bottom: 20px;
+    float:left;
+    width:100%;
+}
+footer .footer-bottom .footer-links {
+    height: 50px;
+}
+footer .footer-bottom .footer-links li, footer .footer-bottom .footer-links li a {
+    float: left;
+    font-size: 11px;
+    line-height: 2em;
+    color: #fff;
+    min-width: 177px;
+    text-align: left;
+    font-weight: normal;
+}

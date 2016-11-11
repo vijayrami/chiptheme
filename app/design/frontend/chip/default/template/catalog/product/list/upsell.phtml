@@ -1,0 +1,94 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php $upsell_count = count($this->getItemCollection()->getItems()); ?>
+<?php if($upsell_count): ?>
+
+<section class="box-collateral box-up-sell">
+    <div class="section-heading">
+        <div class="navigation-buttons">
+            <?php if ($upsell_count >3): ?>
+                <span class="button scroll-left"><i class="icon-angle-left"></i> <?php echo $this->__('previous') ?></span>
+            <?php endif; ?>
+            <?php if ($upsell_count >3): ?>
+                <span class="button scroll-right"><?php echo $this->__('next') ?> <i class="icon-angle-right"></i></span>
+            <?php endif; ?>
+        </div>
+    </div>
+    <br class="clear">
+    <div id="upsell-container" class="iosSlider-upsell">
+        <ul class="slider-items">
+            <?php // $this->setColumnCount(5); // uncomment this line if you want to have another number of columns. also can be changed in layout ?>
+            <?php $this->resetItemsIterator() ?>
+            <?php for($_i=0;$_i<$this->getRowCount();$_i++): ?>
+                <?php for($_j=0;$_j<$this->getColumnCount();$_j++): ?>
+                    <?php if($_product=$this->getIterableItem()): ?>
+                        <li class="item">
+                            <div class="product-item">
+
+                                <?php
+                                    $_gallery = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages();
+                                    $_image = null;
+                                    if (count($_gallery)) {
+                                        foreach ($_gallery as $item)
+                                        {
+                                            $_image = $item->getFile();
+                                        }
+                                    }
+                                ?>
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(260,320) ?>"
+                                         alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+                                    <img class="hover-image" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image',$_image)->resize(260,320) ?>"
+                                         alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+                                </a>
+
+
+
+                                <div class="promo-container">
+                                    <?php
+                                        $_promo = $this->helper('chip/data')->getPromoLabels($_product);
+                                        echo $_promo['sale'];
+                                        echo $_promo['new'];
+                                    ?>
+                                </div>
+
+                                <h2 class="item fn product-name">
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName() ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a>
+                                </h2>
+                                <span class="price"><?php echo $this->__('Price') ?>: <?php echo $_currency; ?><?php echo number_format($_product->getFinalPrice(),2); ?></span>
+                                <?php if($_product->getRatingSummary()): ?>
+                                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                <?php endif; ?>
+
+                                <?php if($_product->getRatingSummary()): ?>
+                                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                <?php endif; ?>
+                                <p class="short-description">
+                                    <?php
+                                    $_description = nl2br($_product->getShortDescription());
+                                    if (strlen($_description) > 50) {
+                                        echo substr($_description,0,50).' ...';
+                                    } else {
+                                        echo $_description;
+                                    }
+                                    ?>
+                                </p>
+
+
+
+                            </div>
+                        </li>
+                    <?php endif ?>
+                <?php endfor; ?>
+            <?php endfor; ?>
+        </ul>
+    </div>
+</section>
+<?php endif ?>

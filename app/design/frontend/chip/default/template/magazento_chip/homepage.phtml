@@ -1,0 +1,68 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<div class="category-toolbar">
+    <div class="container_16">
+        <div class="grid_16">
+            <div class="grid_1 omega">
+            </div>
+            <div class="grid_14 omega">
+
+                <div id="chip_category">
+                    <ul>
+                        <li class="category-tab active">
+                            <a href="#category-new-products"><?php echo $this->__('<u>New</u> Top 3') ?></a>
+                        </li>
+                        <li class="category-tab">
+                            <a href="#category-sale-products"><?php echo $this->__('<u>Sale</u> Top 3') ?></a>
+                        </li>
+                        <li class="category-tab">
+                            <a href="#category-popular-products"><?php echo $this->__('<u>Popular</u> Top 3') ?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container_16">
+    <div class="grid_16">
+        <div class="grid_4 omega width-mobile">
+            <div class="col-left sidebar">
+                <section class="block block-category-flat">
+                    <div class="block-title">
+                        <span><?php echo $this->__('Store Categories') ?></span>
+                    </div>
+                    <div class="block-content">
+                        <?php echo $this->getChildHtml('homepage_categories') ?>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="grid_12 omega">
+            <div class="category-tabs-content main">
+                <div id="category-new-products" style="display:none;" class="tab-item">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('homepage_newproducts') ?>
+                    </div>
+                </div>
+                <div id="category-sale-products" style="display:none;" class="tab-item">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('homepage_saleproducts') ?>
+                    </div>
+                </div>
+                <div id="category-popular-products" style="display:none;" class="tab-item">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('homepage_popularproducts') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

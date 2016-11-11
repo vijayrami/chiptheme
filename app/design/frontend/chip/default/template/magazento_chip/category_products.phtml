@@ -1,0 +1,102 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php $_currency =  Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
+<?php $_productCollection = $this->getProductsCollection() ?>
+<ol class="products-list" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+        <li class="hreview-aggregate hproduct item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+
+            <table class="horizontal-item" border="0">
+                <tr>
+                    <td class="product-list-information">
+                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName() ?>"><?php echo $_product->getName()?></a></h2>
+
+
+                        <div class="desc std">
+                            <?php
+                            $_description = nl2br($_product->getShortDescription());
+                            if (strlen($_description) > 220) {
+                                echo substr($_description,0,220).' ...';
+                            } else {
+                                echo $_description;
+                            }
+                            ?>
+                        </div>
+
+
+                        <div class="price-box pricerange">
+                            <div class="backgroundeffect">
+                                <span class="price"><?php echo $_currency; ?><?php echo number_format($_product->getFinalPrice(),2); ?></span>
+                            </div>
+                        </div>
+
+
+                        <div class="product-actons">
+                            <?php if($_product->getRatingSummary()): ?>
+                                <?php if($_product->getRatingSummary()): ?>
+                                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <div class="actions">
+
+                                <div class="extra-act">
+                                    <?php if($_product->isSaleable()): ?>
+                                        <a href="#" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><?php echo $this->__('Add to Cart') ?></a>
+                                    <?php else: ?>
+                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                    <?php endif; ?>
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+                                    <?php endif; ?>
+                                    <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                        <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td style="vertical-align:middle">
+
+                        <?php
+                        $_gallery = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages();
+                        $_image = null;
+                        if (count($_gallery)) {
+                            foreach ($_gallery as $item)
+                            {
+                                $_image = $item->getFile();
+                            }
+                        }
+                        ?>
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(300,null); ?>"
+                                 alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+
+                            <img class="hover-image"
+                                 src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image',$_image)->keepFrame(false)->resize(300,null); ?>"
+                                 alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+
+                            <div class="promo-container">
+                                <?php
+                                $_promo = $this->helper('chip/data')->getPromoLabels($_product);
+                                echo $_promo['sale'];
+                                echo $_promo['new'];
+                                ?>
+                            </div>
+
+                        </a>
+
+                    </td>
+                </tr>
+            </table>
+
+        </li>
+    <?php endforeach; ?>
+</ol>

@@ -1,0 +1,32 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php $_categories =  $this->getCategoryCollection(); ?>
+<?php foreach ($_categories as $_category):?>
+    <div class="categories-homepage">
+        <?php $_image =  Mage::getBaseUrl('media').'catalog/category/'.$_category->getImage(); ?>
+        <div class="category-item" style="background: transparent url(<?php echo $_image; ?>) 50% 50%;">
+            <div class="overlay-pattern1">
+                <div class="container_16">
+                    <div class="grid_2 alpha omega">
+                        &nbsp;
+                    </div>
+                    <div class="grid_14 omega">
+                        <div class="category-content">
+                            <a href="<?php echo $_category->getUrl(); ?>" ><?php echo $this->__('View Category') ?></a>
+                            <div class="section-divider"></div>
+                            <h2  class="category-name"><a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a></h2>
+                            <div class="category-info"><?php echo $_category->getDescription(); ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

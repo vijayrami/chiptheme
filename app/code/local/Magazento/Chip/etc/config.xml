@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Magazento_Chip>
+            <version>1.0.1</version>
+        </Magazento_Chip>
+    </modules>
+    
+    <global>
+        <cms>
+            <layouts>
+                <homepage_chip>
+                    <label>Homepage Chip</label>
+                    <template>page/homepage.phtml</template>
+                </homepage_chip>
+            </layouts>
+        </cms>
+        <blocks>
+            <chip>
+                <class>Magazento_Chip_Block</class>
+            </chip>
+            <reports>
+                <rewrite>
+                    <product_viewed>Magazento_Chip_Block_Product_Viewed</product_viewed>
+                </rewrite>
+            </reports>
+            <checkout>
+                <rewrite>
+                    <cart_crosssell>Magazento_Chip_Block_Cart_Crosssell</cart_crosssell>
+                    <cart_sidebar>Magazento_Chip_Block_Cart_Sidebar</cart_sidebar>
+                </rewrite>
+            </checkout>            
+        </blocks>
+        <helpers>
+            <chip>
+                <class>Magazento_Chip_Helper</class>
+            </chip>
+        </helpers>
+        <models>
+            <chip>
+                <class>Magazento_Chip_Model</class>
+            </chip>
+        </models>        
+    </global>
+    <admin>
+        <routers>
+            <magazento_chip>
+                <use>admin</use>
+                <args>
+                    <module>Magazento_Chip</module>
+                    <frontName>chip</frontName>
+                </args>
+            </magazento_chip>
+        </routers>
+    </admin>
+    
+    <default>
+        <chip>
+            <general>
+                <ajaxcart_enabled>1</ajaxcart_enabled>
+                <logo>logo.png</logo>
+                <googlefonts>Default</googlefonts>                
+                <googlefonts2>Default</googlefonts2>                
+                <color1>#ffa21c</color1>
+                <color2>#fe6b6b</color2>                
+                <color3>#f0525d</color3>                
+                <megamenu>0</megamenu>
+                <googlemap>40.401100, -3.691406</googlemap>
+                <twitter_link>#</twitter_link>
+                <pinterest_link>#</pinterest_link>
+                <linkedin_link>#</linkedin_link>
+                <google_link>#</google_link>
+                <youtube_link>#</youtube_link>
+            </general>
+            <header>
+                <color4>#000</color4>
+                <show_settings>1</show_settings>
+                <show_search>1</show_search>
+            </header>
+            <wideimage>
+                <wide_image_header>wideimage-header.jpg</wide_image_header>
+                <wide_image_footer>wideimage-footer.jpg</wide_image_footer>
+            </wideimage>
+        </chip>
+    </default>      
+    
+</config>

@@ -1,0 +1,318 @@
+<?php
+/**
+ *
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php $_currency =  Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
+<?php $_productCollection = $this->getLoadedProductCollection() ?>
+<?php $_helper    = $this->helper('catalog/output');?>
+
+<div class="category-toolbar">
+    <div class="container_16">
+        <div class="grid_16">
+            <div class="grid_11 omega">
+
+                <div id="chip_category">
+                    <ul>
+                        <li class="category-tab active">
+                            <a href="#category-products" class="active"><?php echo $this->__('<u>Category</u> Products') ?></a>
+                        </li>
+                        <li class="category-tab">
+                            <a href="#category-new-products"><?php echo $this->__('<u>New</u> Top 10') ?></a>
+                        </li>
+                        <li class="category-tab">
+                            <a href="#category-sale-products"><?php echo $this->__('<u>Sale</u> Top 10') ?></a>
+                        </li>
+                        <li class="category-tab">
+                            <a href="#category-popular-products"><?php echo $this->__('<u>Popular</u> Top 10') ?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid_5 alpha">
+                <?php echo $this->getToolbarHtml() ?>
+            </div>
+
+        </div>
+    </div>
+</div>
+<?php if(!$_productCollection->count()): ?>
+    <div class="no-products-container">
+        <div class="big-shopping-cart"><span class="no-products-icon icon-coffee"></span></div>
+        <p class="no-products">
+            <?php echo $this->__('There are no products matching the selection.') ?>
+            <br/>
+            <button type="button"  class="button" onclick="window.history.back();"><span><span><?php echo $this->__('Return to Previous page') ?></span></span></button>
+        </p>
+
+        <?php $_block = Mage::getModel('cms/block')->load('no_products_category') ?>
+        <br class="clear">
+        <h2 class="no-product-block-title"><?php echo $_block->getTitle(); ?></h2>
+        <div class="no-product-block-content">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('no_products_category')->toHtml();?>
+        </div>
+
+    </div>
+<?php else: ?>
+
+
+<div class="main-container col2-left-layout container_16">
+    <div class="grid_16">
+
+
+        <div class="category-tabs-content main">
+            <div id="category-products" style="display:block;" class="tab-item">
+                <aside class="grid_4 omega">
+                    <div class="col-left sidebar">
+                        &nbsp;
+                        <?php echo $this->getChildHtml('left') ?>
+                        <?php echo $this->getChildHtml('category_child') ?>
+                    </div>
+                </aside>
+                <article class="grid_12 omega">
+                    <div class="col-main">
+
+                        <div class="category-products">
+                            <?php echo $this->getChildHtml('global_messages') ?>
+                            <?php //echo $this->getChildHtml('category.heading') ?>
+
+                            <?php // List mode ?>
+                            <?php if($this->getMode()!='grid'): ?>
+                                <?php $_iterator = 0; ?>
+                                <ol class="products-list" id="products-list">
+                                    <?php foreach ($_productCollection as $_product): ?>
+                                        <li class="hreview-aggregate hproduct item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+
+                                            <table class="horizontal-item" border="0">
+                                                <tr>
+                                                    <td class="product-list-information">
+                                                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName() ?>"><?php echo $_product->getName()?></a></h2>
+
+
+                                                        <div class="desc std">
+                                                            <?php
+                                                            $_description = nl2br($_product->getShortDescription());
+                                                            if (strlen($_description) > 220) {
+                                                                echo substr($_description,0,220).' ...';
+                                                            } else {
+                                                                echo $_description;
+                                                            }
+                                                            ?>
+                                                        </div>
+
+
+                                                        <div class="price-box pricerange">
+                                                            <div class="backgroundeffect">
+                                                                <span class="price"><?php echo $_currency; ?><?php echo number_format($_product->getFinalPrice(),2); ?></span>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="product-actons">
+                                                            <?php if($_product->getRatingSummary()): ?>
+                                                                <?php if($_product->getRatingSummary()): ?>
+                                                                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                            <div class="actions">
+
+                                                                <div class="extra-act">
+                                                                    <?php if($_product->isSaleable()): ?>
+                                                                        <a href="#" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><?php echo $this->__('Add to Cart') ?></a>
+                                                                    <?php else: ?>
+                                                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                                                    <?php endif; ?>
+                                                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                                                        <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+                                                                    <?php endif; ?>
+                                                                    <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                                                        <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                    <td style="vertical-align:middle">
+
+                                                        <?php
+                                                        $_gallery = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages();
+                                                        $_image = null;
+                                                        if (count($_gallery)) {
+                                                            foreach ($_gallery as $item)
+                                                            {
+                                                                $_image = $item->getFile();
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+                                                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(300,null); ?>"
+                                                                 alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+
+                                                            <img class="hover-image"
+                                                                 src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image',$_image)->keepFrame(false)->resize(300,null); ?>"
+                                                                 alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+
+                                                            <div class="promo-container">
+                                                                <?php
+                                                                $_promo = $this->helper('chip/data')->getPromoLabels($_product);
+                                                                echo $_promo['sale'];
+                                                                echo $_promo['new'];
+                                                                ?>
+                                                            </div>
+
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ol>
+                                <!--<script type="text/javascript">decorateList('products-list', 'none-recursive')</script>-->
+
+                            <?php else: ?>
+
+                                <?php // Grid Mode ?>
+
+                                <?php $_collectionSize = $_productCollection->count() ?>
+                                <ul class="products-grid">
+                                    <?php $i=0; foreach ($_productCollection as $_product): ?>
+                                        <li class="hreview-aggregate hproduct item">
+                                            <div class="product-item">
+                                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->getImageLabel($_product, 'small_image') ?>" class="url product-image">
+                                                    <img class="photo fn"
+                                                         src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(300,null); ?>"
+                                                         alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>"
+                                                        />
+                                                    <div class="price-box pricerange">
+                                                        <div class="backgroundeffect">
+                                                            <span class="price"><?php echo $_currency; ?><?php echo number_format($_product->getFinalPrice(),2); ?></span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="promo-container">
+                                                    <?php
+                                                    //                        echo $i;
+                                                    $_promo = $this->helper('chip/data')->getPromoLabels($_product);
+                                                    echo $_promo['sale'];
+                                                    echo $_promo['new'];
+                                                    ?>
+                                                </div>
+
+                                                <div class="namebox">
+                                                    <h2 class="product-name">
+                                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName() ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a>
+                                                    </h2>
+                                                </div>
+                                                <?php if($_product->getRatingSummary()): ?>
+                                                    <?php if($_product->getRatingSummary()): ?>
+                                                        <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                                <div class="desc std">
+                                                    <?php
+                                                    $_description = nl2br($_product->getShortDescription());
+                                                    if (strlen($_description) > 120) {
+                                                        echo substr($_description,0,120).' ...';
+                                                    } else {
+                                                        echo $_description;
+                                                    }
+                                                    ?>
+                                                </div>
+
+                                            </div>
+                                            <div class="product-item-detailed">
+                                                <?php
+                                                $_gallery = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages();
+                                                $_image = null;
+                                                if (count($_gallery)) {
+                                                    foreach ($_gallery as $item)
+                                                    {
+                                                        $_image = $item->getFile();
+                                                    }
+                                                }
+                                                ?>
+                                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->getImageLabel($_product, 'small_image') ?>" class="url product-image">
+                                                    <img class="photo fn"
+                                                         src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image',$_image)->keepFrame(false)->resize(300,null); ?>"
+                                                         alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>"
+                                                        />
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    <?php endforeach ?>
+                                </ul>
+                                <!--<script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>-->
+                            <?php endif; ?>
+                        </div>
+
+
+                        <?php if($_category = Mage::registry('current_category')): ?>
+                            <?php if($_description=$_category->getDescription()): ?>
+                                <div class="category-description std">
+                                    <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+
+                </article>
+            </div>
+
+
+            <div id="category-new-products" style="display:none;" class="tab-item">
+                <div class="grid_4 omega">
+                    <div class="col-left sidebar">
+                        <?php echo $this->getChildHtml('category_child') ?>
+                    </div>
+                </div>
+                <div class="grid_12 omega">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('category_newproducts') ?>
+                    </div>
+                </div>
+            </div>
+            <div id="category-sale-products" style="display:none;" class="tab-item">
+                <div class="grid_4 omega">
+                    <div class="col-left sidebar">
+                        <?php echo $this->getChildHtml('category_child') ?>
+                    </div>
+                </div>
+                <div class="grid_12 omega">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('category_saleproducts') ?>
+                    </div>
+                </div>
+            </div>
+            <div id="category-popular-products" style="display:none;" class="tab-item">
+                <div class="grid_4 omega">
+                    <div class="col-left sidebar">
+                        <?php echo $this->getChildHtml('category_child') ?>
+                    </div>
+                </div>
+                <div class="grid_12 omega">
+                    <div class="category-products">
+                        <?php echo $this->getChildHtml('category_popularproducts') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>

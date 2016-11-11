@@ -1,0 +1,443 @@
+.header-overflow {
+    height: 300px;
+    overflow: hidden;
+}
+.cms-home .header-overflow {
+    height: 600px;
+}
+
+.header-access .logo-container {
+    height: 50px;
+    padding-right: 10px;
+    margin-top: 25px;
+    float: left;
+    margin-right: 15px;
+}
+
+.header-access .logo-container .logo{
+    margin-left: 20px;
+}
+.header-wideimage {
+    float: left;
+    width: 100%;
+    height: 660px;
+}
+
+
+.header-wrapper {
+    height: 10px;
+    width: 100%;
+    position: absolute;
+    z-index: 98;
+    top: 80px;
+    float: left;
+}
+
+.header-access {
+    margin-top: 0;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100px;
+}
+
+.header-access .dd-label,
+.header-access .dd-icon  {
+    color: #fff;
+}
+
+.header-access .triangle-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10%;
+}
+.header-access .triangle-wrapper .triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent !important;
+    border-right: 15px solid transparent !important;
+    border-bottom: 20px solid #fff;
+    position: relative;
+}
+.nav-extra {
+    height: 50px;
+    margin-top: 26px;
+}
+
+.header-access .dropdown-content {
+}
+
+.heading-title {
+    position: absolute;
+    top: 130px;
+    left: 0;
+    color: #fff;
+    font-size: 70px;
+    line-height: 1;
+    text-align: left;
+    width: 100%;
+    /*font-weight: bold;*/
+}
+
+/* CART */
+.header-access .cart {
+    z-index: 99;
+    float: right;
+    padding-left: 5px;
+    padding-right: 20px;
+    height: 30px;
+    padding-top: 10px;
+    position: relative;
+}
+
+.header-access .cart a.cart-icon {
+    float: left;
+    font-size: 12px;
+    height: inherit;
+    line-height: inherit;
+    text-align: center;
+    margin-right: 10px;
+}
+.header-access .cart .cart-icon span {
+    margin-right: 5px;
+}
+
+.header-access .cart .cart-counter {
+    font-size: 12px;
+    line-height: 28px;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    text-transform: lowercase;
+    float: right;
+    margin-left: 7px;
+}
+.header-access .cart.over {
+}
+.header-access .cart.over .cart-counter {
+    color: #4b4b4b;
+}
+.header-access .cart.over a.cart-icon{
+}
+.header-access .cart a:hover { text-decoration: none;}
+
+.header-access .cart .cart-content {
+    background: #fff;
+}
+
+.header-access .cart .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    padding-top: 30px;
+    top: 25px;
+    right: 0;
+    background: transparent;
+}
+
+.header-access .cart .dropdown-content .mini-products-list {
+}
+
+.header-access .cart .dropdown-content .actions {
+    padding: 10px;
+}
+
+.header-access .cart .dropdown-content .subtotal {
+    padding: 10px;
+    margin: 10px 0 0;
+    clear: both;
+    color: #fff;
+    font-size: 14px;
+}
+
+.header-access .cart .dropdown-content .subtotal-sum {
+    float: right;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.header-access .cart .dropdown-content .amount {
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    color: #222;
+}
+
+.header-access .cart .empty {
+    padding: 10px;
+    text-align: center;
+}
+.header-access .cart .dropdown-content .btn-remove {
+    margin: 5px 0 5px 26px;
+}
+
+.header-access .cart  .view-cart {
+}
+.header-access .cart .view-cart span,
+.header-access .cart .view-cart span span {
+    background: transparent;
+    font-size: 15px;
+}
+
+.header-access .cart .view-cart i{
+    font-size: 40px;
+    color: #fff;
+}
+
+/*
+*  settings
+*/
+
+.header-access .settings {
+    float: right;
+    padding-left: 5px;
+    padding-right: 30px;
+    padding-top: 10px;
+    height: 40px;
+    position: relative;
+    z-index: 99;
+}
+.header-access .settings span {
+    margin-right: 5px;
+}
+.header-access .settings.over {
+}
+.header-access .settings.over a.settings-icon{
+}
+
+.header-access .settings .btn-remove { float: right; }
+.header-access .settings .settings-icon {
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.header-access .settings .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    padding-top: 30px;
+    top: 20px;
+}
+
+.header-access .settings .dropdown-content-data a {
+    color: #777;
+}
+
+
+
+
+/*
+*  Search
+*/
+
+.header-access .search {
+    float: right;
+    padding-left: 5px;
+    padding-right: 20px;
+    padding-top: 10px;
+    height: 40px;
+    position: relative;
+    z-index: 99;
+}
+.header-access .search a.search-icon {
+    float: left;
+    font-size: 12px;
+    height: inherit;
+    line-height: inherit;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.header-access .search .search-icon span {
+    margin-right: 5px;
+}
+
+.header-access .search .dropdown-content {
+    display: none;
+    position: absolute;
+    padding-top: 30px;
+    top: 25px;
+    right: 0;
+    z-index: 99;
+}
+.header-access .search .dropdown-content #search {
+    width: 160px;
+
+}
+.header-access .search .dropdown-content-data {
+    padding: 10px;
+    background: #fff;
+}
+
+/*
+*  Account
+*/
+
+.header-access .account {
+    float: right;
+    padding-left: 5px;
+    padding-right: 0px;
+    padding-top: 10px;
+    height: 40px;
+    position: relative;
+    z-index: 99;
+}
+.header-access .account span {
+    margin-right: 5px;
+}
+.header-access .account.over {
+}
+.header-access .account.over a.account-icon{
+}
+
+.header-access .account .btn-remove { float: right; }
+.header-access .account .account-icon {
+    float: left;
+    font-size: 12px;
+    text-align: center;
+}
+
+.header-access .account .dropdown-content {
+    display: none;
+    position: absolute;
+    padding-top: 30px;
+    top: 25px;
+    right: 0;
+    z-index: 99;
+}
+
+.header-access .account .dropdown-content .dropdown-content-data {
+    text-align: center;
+}
+
+.header-access .account .dropdown-content .dropdown-content-data a {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+
+/*
+* all
+*/
+.header-access .dropdown-content-data{
+    padding: 10px;
+    background: #fff;
+}
+
+.header-access .dropdown-content-data .small-heading {
+    font-size: 12px;
+    padding: 10px 0 0px 0;
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+
+
+
+/* Mini Products List */
+
+.mini-products-list .product-name {
+    color: #666;
+    font-size: 12px;
+    line-height: 1em;
+}
+.mini-products-list li {
+    clear: both;
+    float: left;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e7e7e7;
+}
+.mini-products-list li.last {
+    border: 0;
+    margin-bottom: 0;
+}
+
+.mini-products-list .product-image {
+    float:left;
+    margin-right: 10px;
+    padding: 3px;
+}
+.mini-products-list li .product-details {
+}
+.mini-products-list li .product-details p.product-qty {
+    color: #777;
+    line-height: 1.5;
+}
+.mini-products-list li.last.even .product-details {
+    border-bottom: 0;
+}
+
+.mini-products-list .product-details {
+    width: 175px;
+    min-height: 75px;
+    float: left;
+    margin-left: 5px;
+}
+
+
+.mini-products-list .product-details-right {
+    width: 65px;
+    float: right;
+    margin-left: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.mini-products-list .product-details-right .price {
+    color: #555;
+    font-size: 14px;
+
+}
+
+.mini-products-list .product-details h4 { font-size:1em; font-weight:bold; margin:0; }
+
+.menu-button {
+    cursor: pointer;
+    width: 46px;
+    height: 59px;
+    color: #fff;
+    font-size: 35px;
+    margin-left: auto;
+    float: left;
+    padding-top: inherit;
+    padding-left: 16px;
+    line-height: 61px;
+    text-align: left;
+    margin-top: 21px;
+}
+
+.menu-container {
+    width: 100%;
+    background: #fff;
+    height: auto;
+    display: none;
+    min-height: 330px;
+}
+
+.menu-container .menu-content-header {
+    color: #222;
+    font-size: 22px;
+    line-height: 2em;
+}
+.menu-button.opened {
+    background: #fff;
+    color: #222;
+}
+.menu-button.opened span {
+    background: #222;
+}
+.header-welcome-msg {
+    padding-left: 10px;
+    color: #fff;
+    margin-top: 22px;
+    font-size: 10px;
+}
+.header-welcome-msg p{
+
+    color: #fff;
+}

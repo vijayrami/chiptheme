@@ -1,0 +1,30 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">    
+    <head>
+        <?php echo $this->getChildHtml('head') ?>
+    </head>
+    <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <div class="wrapper">
+            <?php echo $this->getChildHtml('global_notices') ?>
+            <div class="page">
+                <?php echo $this->getChildHtml('header') ?>
+                <section id="chip-ajax-content">
+                    <?php echo $this->getChildHtml('content') ?>
+                </section>
+                <?php echo $this->getChildHtml('footer') ?>
+                <?php echo $this->getChildHtml('before_body_end') ?>
+            </div>
+        </div>
+        <?php echo $this->getAbsoluteFooter() ?>
+    </body>
+</html>

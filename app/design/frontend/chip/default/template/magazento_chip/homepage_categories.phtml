@@ -1,0 +1,17 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php
+    $category_id = Mage::app()->getStore()->getRootCategoryId();
+    $_category = Mage::getModel("catalog/category")->load($category_id);
+    $activeChildren = explode(",",$_category->getChildren());
+?>
+<?php
+    echo $this->drawNestedMenus($activeChildren);
+?>

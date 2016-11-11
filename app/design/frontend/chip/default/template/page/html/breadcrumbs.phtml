@@ -1,0 +1,90 @@
+<?php
+/**
+ * 
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php if($crumbs && is_array($crumbs)):?>
+<div class="breadcrumbs-container">
+    <div class="container_16">
+        <div class="grid_16">
+            <div class="grid_11 omega">
+                <div class="breadcrumbs">
+                    <ul>
+                        <?php foreach($crumbs as $_crumbName=>$_crumbInfo):
+                            ?>
+                            <li class="<?php echo $_crumbName ?>">
+                                <?php if($_crumbInfo['link']): ?>
+                                    <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>">
+                                        <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+                                    </a>
+                                <?php elseif($_crumbInfo['last']): ?>
+                                    <span class="breadcrumbs-last"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></span>
+                                <?php else: ?>
+                                    <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+                                <?php endif; ?>
+                                <?php if(!$_crumbInfo['last']): ?>
+                                    <span class="crumbs-divider"> / </span>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid_5 omega">
+                <div class="social-buttons">
+                    <div class="social-twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="social-facebook">
+                        <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                    </div>
+                    <div class="social-pinterest">
+                        <a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" ><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="heading-title">
+        <div class="container_16">
+            <div class="grid_16">
+                <span><?php echo $_crumbInfo['label'];?></span>
+            </div>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+
+    <?php
+    $page = Mage::app()->getFrontController()->getRequest()->getRouteName();
+    $cmsSingletonIdentifier = Mage::getSingleton('cms/page')->getIdentifier();
+    $homeIdentifier = Mage::app()->getStore()->getConfig('web/default/cms_home_page');
+    if($cmsSingletonIdentifier !== $homeIdentifier):
+        $prefix = Mage::getStoreConfig('design/head/title_prefix');
+        $suffix = Mage::getStoreConfig('design/head/title_suffix');
+        $title = $this->getLayout()->getBlock('head')->getTitle();
+        $title = trim(substr($title, strlen($prefix)));
+    ?>
+        <div class="heading-title">
+            <div class="container_16">
+                <div class="grid_16">
+                    <span><?php echo $title;?></span>
+                </div>
+            </div>
+        </div>
+    <?php
+    endif;
+    ?>
+
+
+    <?php
+
+    ?>
+
+<?php endif; ?>
+

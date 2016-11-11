@@ -1,0 +1,142 @@
+<?php
+/**
+ *
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<header>
+<!--    <ol id="joyRideTipContent">-->
+<!--        <li data-id="pageintro-menu" data-text="Next" data-button="Close This Tooltip">-->
+<!--            <h2>Navigation Menu</h2>-->
+<!--            <p>Here is the navigation menu, new age of usability is coming!</p>-->
+<!--        </li>-->
+<!--    </ol>-->
+
+    <nav class="header-access">
+        <div class="header-wrapper">
+            <div class="menu-container">
+                <div class="container_16">
+                    <div class="grid_16">
+                        <br class="clear">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('website_menu')->toHtml();?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container_16">
+            <div class="grid_8 menu-wrapper">
+                <div id="pageintro-menu" class="menu-button">
+                    <i class="icon-reorder"></i>
+                </div>
+                <div class="logo-container">
+                    <a href="<?php echo $this->getUrl('') ?>"
+                       title="<?php echo $this->getLogoAlt() ?>" class="logo">
+                        <img class="logotype logo-big"
+                             src="<?php echo Mage::getBaseUrl('media') . '/magazento_chip/' . Mage::getStoreConfig('chip/general/logo'); ?>"
+                             alt="<?php echo $this->getLogoAlt() ?>"/>
+                    </a>&nbsp;
+                </div>
+                <div class="header-welcome-msg">
+                    <p><?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?></p>
+                </div>
+            </div>
+            <div class="nav-extra grid_8 alpha ">
+
+
+                <div class="account dropdown-container">
+                    <a class="account-icon" href="<?php echo $this->getUrl('customer/account')?>">
+                        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+                            <span class="dd-label"><?php echo $this->__('Log Out') ?></span>
+                            <i class="dd-icon icon-signout"></i>
+                        <?php else: ?>
+                            <span class="dd-label"><?php echo $this->__('Log In') ?></span>
+                            <i class="dd-icon icon-signin"></i>
+                        <?php endif; ?>
+
+                    </a>
+                    <div class="dropdown-content grid_4 alpha omega">
+                        <div class="triangle-wrapper"><div class="triangle"></div></div>
+                        <div class="dropdown-content-data">
+                            <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+                                <a href="<?php echo $this->getUrl('customer/account') ?>"> <?php echo $this->__('My Account') ?></a> |
+                                <a href="<?php echo Mage::helper('customer')->getLogoutUrl() ?>"> <?php echo $this->__('Log Out') ?></a>
+                            <?php else: ?>
+                                <a href="<?php echo $this->getUrl('customer/account') ?>"> <?php echo $this->__('My Account') ?></a> |
+                                <a class="button" href="<?php echo Mage::helper('customer')->getLoginUrl() ?>"> <?php echo $this->__('Log In') ?></a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart dropdown-container">
+                    <a class="cart-icon" href="<?php echo $this->getUrl('checkout/cart') ?>">
+                        <span class="dd-label"><?php echo $this->__('Shopping Cart') ?></span>
+                        <i class="dd-icon icon-shopping-cart"></i>
+                    </a>
+                    <div class="dropdown-content grid_4 alpha omega">
+                        <?php echo $this->getChildHtml('cart_header') ?>
+                    </div>
+                </div>
+                <?php if (Mage::getStoreConfig('chip/header/show_search')): ?>
+                    <div class="search dropdown-container">
+                        <a class="search-icon" href="#">
+                            <span class="dd-label"><?php echo $this->__('Search') ?></span>
+                            <i class="dd-icon icon-search"></i>
+                        </a>
+                        <div class="dropdown-content grid_4 alpha omega">
+                            <div class="triangle-wrapper"><div class="triangle"></div></div>
+                            <div class="dropdown-content-data">
+                                <div class="topsearch">
+                                    <?php echo $this->getChildHtml('topSearch') ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+                <?php if (Mage::getStoreConfig('chip/header/show_settings')): ?>
+                    <div class="settings dropdown-container">
+                        <a class="settings-icon" href="#">
+                            <span class="dd-label"><?php echo $this->__('Language') ?></span>
+                            <i class="dd-icon icon-cog"></i>
+                        </a>
+                        <div class="dropdown-content grid_4 alpha omega">
+                            <div class="triangle-wrapper"><div class="triangle"></div></div>
+                            <div class="dropdown-content-data">
+                                <?php echo $this->getChildHtml('currency') ?>
+                                <?php echo $this->getChildHtml('store_language') ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+
+
+
+
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="header-overflow">
+        <div class="header-wideimage" style="background: transparent url(<?php echo Mage::getBaseUrl('media') . '/magazento_chip/' . Mage::getStoreConfig('chip/wideimage/wide_image_header'); ?>) 50% 50%  no-repeat; background-size: cover;">
+            <div class="overlay-pattern2">
+            </div>
+            <?php
+            $page = Mage::app()->getFrontController()->getRequest()->getRouteName();
+            if ($page == 'cms') {
+                $cmsSingletonIdentifier = Mage::getSingleton('cms/page')->getIdentifier();
+                $homeIdentifier = Mage::app()->getStore()->getConfig('web/default/cms_home_page');
+                if ($cmsSingletonIdentifier === $homeIdentifier) {
+                    echo $this->getChildHtml('headerslider');
+                }
+            }
+            ?>
+
+        </div>
+    </div>
+
+</header>

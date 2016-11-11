@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ * @category  design
+ * @package   chip_default
+ * @author    Ivan Proskuryakov http://www.magazento.com <volgodark@gmail.com>
+ * @copyright Copyright (C)2013 Magazento
+ */
+?>
+<?php
+$category_id = 4;
+$_category = Mage::getModel("catalog/category")->load($category_id);
+$activeChildren = explode(",",$_category->getChildren());
+?>
+<section class="block block-category-flat">
+    <div class="block-title">
+        <span><?php echo $this->__('More From ') ?><?php echo $_category->getName(); ?></span>
+    </div>
+    <div class="block-content">
+
+        <?php
+        echo $this->drawNestedMenus($activeChildren);
+        ?>
+    </div>
+</section>
+
